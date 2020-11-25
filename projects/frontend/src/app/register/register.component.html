@@ -1,0 +1,8 @@
+
+<h3> Register </h3>
+<form #f="ngForm" (ngSubmit)="Register(f)">
+    <input type="name" name="name" [(ngModel)]="name" required placeholder="Enter your name"/>
+    <input type="email" name="email" [(ngModel)]="email" required placeholder="Enter Email">
+    <input type="password" name="password" [(ngModel)]="password" required placeholder="Enter password"/>
+    <button type="submit">Submit</button>
+</form>
