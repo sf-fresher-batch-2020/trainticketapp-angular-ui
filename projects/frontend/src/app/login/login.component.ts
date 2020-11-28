@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     if (result==true) {
       this.toastr.success("Success");
       
-      // this.router.navigate(['home']);
+     // this.router.navigate(['viewtrains']);
     }
     else if(result==false){
       this.toastr.error("Invalid Credentials");
