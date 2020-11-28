@@ -1,0 +1,18 @@
+<h3>view available trains here</h3>
+<hr />
+<table id="trains">
+    <tr>
+        <th *ngFor="let column of headers">
+            {{ column }}
+        </th>
+        <th>actions</th>
+    </tr>
+    <tr *ngFor="let row of rows">
+        <td *ngFor="let column of headers">
+            {{ row[column] }}
+        </td>
+        <td>
+            <button class="btn btn-primary" (click)="bookTicket(row)">Book</button>
+        </td>
+    </tr>
+</table>
