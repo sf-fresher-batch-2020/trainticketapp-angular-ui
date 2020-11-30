@@ -13,8 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ViewtrainsComponent } from './viewtrains/viewtrains.component';
+import { BookticketsComponent } from './booktickets/booktickets.component';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, HomeComponent, RegisterComponent, LoginComponent, ViewtrainsComponent],
+  declarations: [AppComponent, HeaderComponent, HomeComponent, RegisterComponent, LoginComponent, ViewtrainsComponent, BookticketsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

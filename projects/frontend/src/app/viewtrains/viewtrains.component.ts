@@ -42,7 +42,7 @@ export class ViewtrainsComponent implements OnInit {
       "Destination": "hyderabad",
       "Duration": "10 hrs"
     }
-  ]
+  ] 
   bookTicket(data) {
     console.log(data);
     let obj = { "trainName": data.TrainName, "trainNumber": data.TrainNumber };
