@@ -1,54 +1,47 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../services/user.service';
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-
   email: string;
   password: string;
-  constructor(private toastr: ToastrService) { }
+  constructor(private toastr: ToastrService, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
   Login(form: NgForm) {
-    let formData = form.value;
-    console.log(JSON.stringify(formData));
-    this.email = formData.email;
-    this.password = formData.password;
-    let result =  this.validateLogin(this.email,this.password);
-    if (result==true) {
-      this.toastr.success("Success");
-      
-     // this.router.navigate(['viewtrains']);
-    }
-    else if(result==false){
-      this.toastr.error("Invalid Credentials");
-    }
-
-
-  }
-  validateLogin(email, password) {
-    var usersTemp = JSON.parse(localStorage.getItem("USERS"));
-    var users = usersTemp ? usersTemp : [];
-    let exists = false;
-    for (let obj of users) {
-      if (obj.email == email && obj.password == password) {
-        exists = true;
-        localStorage.setItem("LOGGED_IN_USER", JSON.stringify(obj));
-        break;
+    this.userService.getUsers().subscribe(res => {
+      console.log(res);
+      let users: any = res;
+      let userExists = false;
+      let loggedInUser = null;
+      for (let obj of users) {
+        if (obj.email == this.email && obj.password == this.password) {
+          console.log(this.email);
+          userExists = true;
+          loggedInUser = obj;
+          break;
+        }
       }
-    }
-    return exists;
+      if (userExists) {
+        form.reset();
+        this.authService.storeLoginDetails(loggedInUser);
+        this.toastr.success("Successfully Logged in");
+      }
+      else {
+        this.toastr.error("Invalid credentials");
+      }
+    });
+
+
   }
+}
 
-
-
-
-  }
 
 
